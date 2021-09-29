@@ -2,33 +2,54 @@ package main
 
 import (
 	"fmt"
-
-	// "log"
+	"html/template"
+	"log"
 	"net/http"
+	// "github.com/test/dirs"
 )
 
-type User struct {
+var Tmp *template.Template
+var err error
+
+type Data struct {
+	input     string
+	Output    string
+	Font      string
+	ErrorNum  int
+	ErrorText string
 }
 
-// func main() {
-// 	http.HandleFunc("/", handler)                // URL, method
-// 	log.Fatal(http.ListenAndServe(":8080", nil)) // обращение к методу - ListenAndServe. Создаем локальный сервер для отслеживания порта
-// }
-
-func home(w http.ResponseWriter, r *http.Request) { // обращаемся через w и выводим страницу. ResponseWriter - тип данных.
-	fmt.Fprintf(w, "Hi there!")
-}
-func contacts(w http.ResponseWriter, r *http.Request) { // обращаемся через w и выводим страницу. ResponseWriter - тип данных.
-	fmt.Fprintf(w, "contacts!")
+func init() {
+	Tmp, err = template.ParseFiles("templates/index.html")
+	if err != nil {
+		log.Fatal("ssc", err)
+	}
 }
 
-func handleRequest() { // обращаемся через w и выводим страницу. ResponseWriter - тип данных.
-	http.HandleFunc("/", home)
-	http.HandleFunc("/contacts/", contacts)
-	http.ListenAndServe(":8080", nil)
+func home(w http.ResponseWriter, r *http.Request) {
+	Tmp.Execute(w, nil)
+}
 
+func ascii(w http.ResponseWriter, r *http.Request) {
+	D := Data{}
+	text := r.FormValue("input")
+	// font := r.FormValue("font")
+	// out, _ := dirs.GetArt(text, font)
+	fmt.Println("HERE")
+	// fmt.Println(font)
+	D.Output = text
+	// if r.FormValue("process") == "show" {
+	Tmp.Execute(w, D)
+	// }
 }
 
 func main() {
-	handleRequest()
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", home)
+	mux.HandleFunc("/ascii-art", ascii)
+	fmt.Println("8080")
+	er := http.ListenAndServe(":8080", mux)
+	if er != nil {
+		fmt.Println(er)
+	}
 }

@@ -1,0 +1,12 @@
+{{template "header"}}
+
+<main>
+    <div class="full-screen"></div>
+    <p>Error #{{.ErrorNum}}</p>
+    <p>{{.ErrorText}}</p>
+    <form action="/">
+        <button type="submit">Please, go back and try agayn!</button>
+    </form>
+</main>
+
+{{template "footer"}}
