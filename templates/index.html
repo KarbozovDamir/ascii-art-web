@@ -7,10 +7,25 @@
   <title>Document</title>
 </head>
 <body>
-  <form action="ascii-art" method="POST">
-    <textarea name="input"></textarea>
+  <form class="result" action="ascii-art" method="POST">
+    <p>Please, chose font</p>
+  <ol>
+    <li><input type="radio" name="shadow" value="text">shadow</li>
+    <li><input type="radio" name="standard" value="text">standard</li>
+    <li><input type="radio" name="thinkertoy" value="text">thinkertoy</li>
+  </ol>
+    <textarea name="input" required placeholder="type something" rows="4" cols="50"></textarea>
     <button type="submit">submit</button>
+    <input type="reset" name="reset" value="Clear">
   </form>
-  <pre>{{ .Output }}</pre>
+  <div class="result">
+    <pre>{{ .Output }}</pre>
+  </div>
+  <div > 
+    <footer>
+      <p>Author: damirkap89<br>
+      <p>2021</p>
+    </footer>
+  </div >
 </body>
 </html>

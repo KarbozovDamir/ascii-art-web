@@ -5,7 +5,6 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	// "github.com/test/dirs"
 )
 
 var Tmp *template.Template
