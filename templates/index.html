@@ -4,19 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <meta name="description" content="web page for HTML/CSS width ASCII-ART"> 
+  <meta name="author" content="damirkap89">
+  <link rel="stylesheet" href="/dirs/style.css">
+  <title>ASCII-ART-WEB</title>
 </head>
 <body>
   <form class="result" action="ascii-art" method="POST">
-    <p>Please, chose font</p>
+ 
   <ol>
-    <li><input type="radio" name="shadow" value="text">shadow</li>
+    <li><input type="radio" name="shadow" value="shadow">shadow</li>
     <li><input type="radio" name="standard" value="text">standard</li>
     <li><input type="radio" name="thinkertoy" value="text">thinkertoy</li>
   </ol>
-    <textarea name="input" required placeholder="type something" rows="4" cols="50"></textarea>
-    <button type="submit">submit</button>
-    <input type="reset" name="reset" value="Clear">
+    <textarea name="input" required placeholder="type something" rows="7" cols="80"></textarea>
+    <button class="button" type="submit" value="submit">submit</button>
+    <input class="button" type="reset" name="reset" value="Clear">
   </form>
   <div class="result">
     <pre>{{ .Output }}</pre>
